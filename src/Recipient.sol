@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.8.19;
 
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {IERC20} from "@openzeppelin/token/ERC20/IERC20.sol";
 
-import "Ward.sol";
+import {Ward} from "src/Ward.sol";
 
 contract Recipient is Ward {
-    address localUsdc;
+    address public localUsdc;
 
     // NOTE: IMessageTransmitter.receive can be called directly from managed EOA. Recipient is preset.
     // /**
@@ -16,7 +16,7 @@ contract Recipient is Ward {
     //     messageTransmitter.receiveMessage(message, attestation);
     // }
 
-    constructor(address _tokenMessenger, uint32 _destinationDomain, bytes32 _mintRecipient, address _localUsdc) {
+    constructor(address _localUsdc) {
         custodian = address(msg.sender);
 
         localUsdc = _localUsdc;

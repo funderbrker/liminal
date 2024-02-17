@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.8.19;
 
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "lib/ITokenMessenger.sol";
+import {IERC20} from "@openzeppelin/token/ERC20/IERC20.sol";
+import {ITokenMessenger} from "src/interfaces/ITokenMessenger.sol";
 
-import "Ward.sol";
+import {Ward} from "src/Ward.sol";
 
 /*
  * Contract used to send USDC from a preset source chain to a present destination chain + address.
@@ -13,7 +13,7 @@ contract Sender is Ward {
     ITokenMessenger public tokenMessenger;
     uint32 public destinationDomain;
     bytes32 public mintRecipient;
-    address localUsdc;
+    address public localUsdc;
 
     constructor(address _tokenMessenger, uint32 _destinationDomain, bytes32 _mintRecipient, address _localUsdc) {
         custodian = address(msg.sender);
